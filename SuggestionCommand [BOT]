@@ -1,0 +1,17 @@
+discord command !suggestion [<text>]:
+	trigger:
+		if arg-1 is not set:
+			create embed:
+				set the description of the embed to "Command: !suggestion%nl%%nl%**Usage:** !suggestion <suggestion>%nl%**Example:** !suggestion Add cool features!"
+				set the color of the embed to yellow
+				set the thumbnail of the embed to "https://imgur.com/R0jmpvA"
+				set footer of the embed to a footer with text "{@Footer}" and no icon
+			send the last created embed to event-channel with event-bot
+		else:
+			create embed:
+				set the description of the embed to ":thinking: New suggestion sent by %mention tag of event-member%"
+				add field named "Suggestion:" with value arg-1 to embed
+				set the color of the embed to yellow
+				set footer of the embed to a footer with text "{@Footer}" and no icon
+			send the last created embed to channel with name "suggestions" with event-bot and store it in {_msg}
+			add reaction "white_check_mark" and "x" to reactions of {_msg} with event-bot
